@@ -25,30 +25,40 @@ spotifyApi
 
 // Our routes go here:
 app.get('/', (req, res) => {
-    res.render('index.hbs');
+    res.render('home.hbs');
   });
 
 app.get("/artist-search", (req,res) => {
     const artist = req.query.artist;
     spotifyApi
     .searchArtists(artist)
+    // ----> 'HERE'S WHAT WE WANT TO DO AFTER RECEIVING THE DATA FROM THE API'
     .then(data => {
-      console.log('The received data from the API: ', data.body);
-      // ----> 'HERE'S WHAT WE WANT TO DO AFTER RECEIVING THE DATA FROM THE API'
-    })
+        console.log('The received data from the API: ', data.body);
+        res.render('artist-search-results.hbs', { artist: data.body.artists.items });
+      })
     .catch(err => console.log('The error while searching artists occurred: ', err));
 })
 
 app.get('/albums/:artistId', (req, res, next) => {
-    const artist = req.params.artistId;
-    spotifyApi.getArtistAlbums(artist).then(
+    const artistId = req.params.artistId;
+    spotifyApi.getArtistAlbums(artistId).then(
         function(data) {
           console.log('Artist albums', data.body);
-        },
-        function(err) {
-          console.error(err);
-        }
-      );
-  });
+          res.render('albums.hbs', { albums: data.body.items });
+        })
+    .catch(err => console.log('The error while searching the albums occurred: ', err));
+});
+
+app.get('/tracks/:artistId', (req, res, next) => {
+    const artistId = req.params.artistId;
+    spotifyApi.getAlbumTracks(artistId, { limit : 5, offset : 1 })
+    .then(function(data) {
+      console.log(data.body);
+      res.render('tracks.hbs', { tracks: data.body.items });
+    }, function(err) {
+      console.log('Something went wrong!', err);
+    });
+});
 
 app.listen(3000, () => console.log('My Spotify project running on port 3000 🎧 🥁 🎸 🔊'));

@@ -1,27 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Search Results</h1>
+<h1 style="padding: 20px" >Search Results</h1>
+<div class="artist-section">
+    <div>
+  <!-- Results section -->
+  {{#if artist.length}}
+    <ul class="artist-section">
+      {{#each artist}}
+        <li class="artist">
+          <h2>{{this.name}}</h2>
+          <img class="img-size" src="{{this.images.[0].url}}" alt="{{this.name}}">
+          <a href="/albums/{{this.id}}" class="buttons">View Albums</a>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No results found.</p>
+  {{/if}}
+    </div>
+</div>
 
-<!-- Results section -->
-{{#if results}}
-  <ul>
-    {{#each results}}
-      <li>
-        <h2>{{this.name}}</h2>
-        <img src="{{this.image}}" alt="{{this.name}}">
-        <a href="/albums/{{this.artistId}}">View Albums</a>
-      </li>
-    {{/each}}
-  </ul>
-{{else}}
-  <p>No results found.</p>
-{{/if}}
-</body>
-</html>
+
