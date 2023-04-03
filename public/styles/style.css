@@ -6,6 +6,11 @@ body {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
+h1{
+    padding: 25px;
+    font-size: 50px;
+}
+
 .background {
     height: 100vh;
     width: 100vw;
@@ -61,12 +66,12 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-  }
+}
   
-  .artist {
+.artist {
     background-color: rgba(255, 255, 255, 0.35);
     width: 300px;
-    height: 300px;
+    height: 350px;
     border-radius: 10px;
     margin: 40px 10px;
     padding: 10px;
@@ -76,7 +81,27 @@ body {
     justify-content: center;
     align-items: center;
     flex-basis: 20%; 
-  }
+}
+
+.table-tracks{
+    background-color: black;
+    width: 60vw;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: larger;
+}
+
+.table-cells{
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.35);
+    border: 1px solid black;
+    height: 60px;
+    padding: 10px;
+    font-size: 30px;
+}
+
+
 
 
 

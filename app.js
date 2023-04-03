@@ -41,13 +41,13 @@ app.get("/artist-search", (req,res) => {
 })
 
 app.get('/albums/:artistId', (req, res, next) => {
-    const artistId = req.params.artistId;
-    spotifyApi.getArtistAlbums(artistId).then(
-        function(data) {
-          console.log('Artist albums', data.body);
-          res.render('albums.hbs', { albums: data.body.items });
-        })
-    .catch(err => console.log('The error while searching the albums occurred: ', err));
+     const artistId = req.params.artistId;
+     spotifyApi.getArtistAlbums(artistId).then(
+         function(data) {
+           console.log('Artist albums', data.body);
+           res.render('albums.hbs', { albums: data.body.items });
+         })
+     .catch(err => console.log('The error while searching the albums occurred: ', err));
 });
 
 app.get('/tracks/:artistId', (req, res, next) => {

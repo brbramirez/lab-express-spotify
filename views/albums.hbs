@@ -2,16 +2,16 @@
     <h1>All Albums</h1>
 
 {{#if albums.length}}
-    <ul>
+    <ul class="artist-section">
         {{#each albums}}
-        <li>
-            <h2>{{this.name}}</h2>
+        <li class="artist">
+                <h2>{{this.name}}</h2>
             {{#if this.images.length}}
-                <img src="{{this.images.[0].url}}" alt="{{this.name}}">
+                <img class="img-size" src="{{this.images.[0].url}}" alt="{{this.name}}">
             {{else}}
                 <p>No image available.</p>
             {{/if}}
-            <a href="/tracks/{{this.id}}">View Tracks</a>
+            <a href="/tracks/{{this.id}}" class="buttons">View Tracks</a>
         </li>
         {{/each}}
     </ul>

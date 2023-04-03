@@ -1,19 +1,29 @@
 <!-- Header section -->
     <h1>All Tracks</h1>
 
-<!-- Albums section -->
+<!-- Tracks section -->
+<table class="table-tracks">
+  <thead>
+    <tr>
+      <th class="table-cells">Title</th>
+      <th class="table-cells">Listen</th>
+    </tr>
+  </thead>
+  <tbody>
     {{#if tracks.length}}
-    <ul>
-        {{#each tracks}}
-        <li>
-        <h2>{{this.name}}</h2>
-        <audio controls>
+    {{#each tracks}}
+    <tr>
+      <td class="table-cells">{{this.name}}</td>
+      <td class="table-cells"><audio controls>
           <source src="{{this.preview_url}}" type="audio/mpeg">
           Your browser does not support the audio element.
-        </audio>
-        </li>
-        {{/each}}
-    </ul>
+        </audio></td>
+    </tr>
+    {{/each}}
     {{else}}
-    <p>No tracks found.</p>
+    <td>No tracks found.</td>
     {{/if}}
+  </tbody>
+</table>
+
+    
